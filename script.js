@@ -26,6 +26,7 @@ const checkWinner = ()=>{
     };
     return false;
 }
+let totalClicks = 0;
 buttons.forEach(button => {
     button.addEventListener('click', () =>{
         if (flag===true){
@@ -37,6 +38,7 @@ buttons.forEach(button => {
             flag = true;
         };
         button.disabled = true;
+        totalClicks ++;
 
         let check = checkWinner();
         console.log("check is ", check)
@@ -47,7 +49,10 @@ buttons.forEach(button => {
 
             let wonPlayer = flag ? "O": "X";
     
-            wonMessage.innerHTML = `<p>${wonPlayer} won</p>`
+            wonMessage.innerText = `${wonPlayer} won🎉`
+        }
+        else if(!check && totalClicks===9){
+            wonMessage.innerText = "It is a draw!"
         }
         
     })

@@ -1,5 +1,6 @@
-let buttons = document.querySelectorAll("button");
+let buttons = document.querySelectorAll(".game-btn");
 let wonMessage = document.getElementById("won_message");
+let resetBtn = document.querySelector("#reset-btn");
 
 let flag = true;
 
@@ -54,11 +55,24 @@ buttons.forEach(button => {
         else if(!check && totalClicks===9){
             wonMessage.innerText = "It is a draw!"
         }
-        
-    })
 
-    
-    
+        if (totalClicks>0){
+            resetBtn.style.visibility = "visible";
+        }
+        
+    })    
+});
+
+resetBtn.addEventListener('click', ()=>{
+    totalClicks = 0;
+    buttons.forEach(button => {
+        button.innerHTML = ""
+        button.disabled = false;
+    });
+    wonMessage.innerText = ""
+    flag = true;   
+    resetBtn.style.visibility = "hidden"; 
+
 });
 
 
